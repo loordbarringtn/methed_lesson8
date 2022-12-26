@@ -1,35 +1,38 @@
 function guessNumber() {
-  const random = Math.floor(Math.random() * 100) + 1;
-  let answer = parseInt(
-    prompt(
-      "Сгенерировано число в диапазоне от 1 до 100, пожалуйста введите Ваш вариант:"
-    )
-  );
+    const random = Math.floor(Math.random() * 100) + 1;
+    let gameIsOver = false;
 
-  while (answer !== random) {
-    if (!answer) {
-      alert("Игра закончена!");
-      break;
-    }
+    while (!gameIsOver) {
+        let answer = parseInt(
+            prompt(
+              `Сгенерировано число в диапазоне от 1 до 100, пожалуйста введите Ваш вариант: ${random}`
+            )
+          );
 
-    if (answer < random) {
-      answer = prompt("Вы ввели число меньше загаданного");
-      continue;
-    }
+      if (!answer) {
+        alert("Игра закончена!");
+        break;
+      }
+  
+      if (answer < random) {
+        alert("Вы ввели число меньше загаданного");
+        continue;
+      }
+  
+      if (answer > random) {
+        alert("Вы ввели число больше загаданного");
+        continue;
+      }
+  
+      if (Number.isNaN(answer)) {
+        alert("Введите число");
+      }
 
-    if (answer > random) {
-      answer = prompt("Вы ввели число больше загаданного");
-      continue;
-    }
-
-    if (Number.isNaN(answer)) {
-      answer = prompt("Введите число");
+      if (answer === random) {
+        alert(`Вы ввели правильный номер: ${random}`);
+        gameIsOver = true;
+      }
     }
   }
-
-  if (answer === random) {
-    prompt(`Вы ввели правильный номер: ${random}`);
-  }
-}
-
-guessNumber();
+  
+  guessNumber();
